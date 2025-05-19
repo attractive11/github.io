@@ -1,57 +1,95 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моя страничка</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-        }
-        .info {
-            margin: 20px 0;
-        }
-        .info h2 {
-            margin: 0;
-        }
-        .info p {
-            margin: 5px 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Резюме с подтверждением возраста</title>
+  <style>
+    body {
+      font-family: Tahoma, sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      text-shadow: 2px 2px 5px #ccc;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid #888;
+      box-shadow: 0 0 10px #aaa;
+    }
+
+    .surname {
+      color: blue;
+      font-size: 24px;
+      border: 1px solid #aaa;
+      padding: 5px;
+      display: inline-block;
+      transition: color 0.3s;
+    }
+
+    .surname:hover {
+      color: red;
+    }
+
+    input, button {
+      padding: 8px;
+      margin: 10px;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #ddd;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Обо мне</h1>
-        <div class="info">
-            <h2>Фамилия и Имя:</h2>
-            <p>Данилов Сергей</p>
-        </div>
-        <div class="info">
-            <h2>ВУЗ:</h2>
-            <p>МГТУ СТАНКИН</p>
-        </div>
-        <div class="info">
-            <h2>Группа:</h2>
-            <p>Адб22-06</p>
-        </div>
-        <div class="info">
-            <h2>Дополнительная информация:</h2>
-            <p>Я студент, увлекаюсь программированием и веб-разработкой. В свободное время занимаюсь спортом и чтением.</p>
-        </div>
-    </div>
+
+  <script>
+    // Сначала спрашиваем возраст
+    let confirmed = false;
+    while (!confirmed) {
+      let age = prompt("Сколько вам лет?", "");
+      if (age === null) {
+        alert("Пожалуйста, введите возраст.");
+        continue;
+      }
+      confirmed = confirm(`Вы уверены, что вам ${age}?`);
+    }
+    alert("Спасибо за подтверждение!");
+  </script>
+
+  <h1>Моё резюме</h1>
+  <img src="https://yastatic.net/naydex/yandex-search/2Cnlz1268/fc83e4thj/OZvqDGCJkkJivlfAMUY7j-PozdxXxFmYFfWz5Nk9XgW83SQTq2v8Ivo8RQTWOl03oev-Ms1EJJAZocJVNheteiSXoj1Q9ZIPP7tm3S0bWvr3nZ38W9BR7WD595WxLCpstaxAW5NKmDL7NRhUjh4dN6HLzgrACW0wWMnqDBISqM9V47OZoTESkppSmyzg2rf7qui5zA7sBa3RM" alt="Фото">
+  <p>Имя: <span id="name">Сергей</span></p>
+  <p>Фамилия: <span class="surname" id="surname">Иванов</span></p>
+
+  <input type="text" id="surnameInput" placeholder="Новая фамилия">
+  <button onclick="changeSurname()">Изменить фамилию</button>
+  <br>
+  <button onclick="changeBackground()">Случайный фон</button>
+
+  <script>
+    function changeSurname() {
+      const input = document.getElementById("surnameInput").value;
+      if (input.trim() !== "") {
+        document.getElementById("surname").textContent = input;
+      }
+    }
+
+    function changeBackground() {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    }
+  </script>
+
 </body>
 </html>
